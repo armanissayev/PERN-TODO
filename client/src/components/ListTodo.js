@@ -1,6 +1,8 @@
 import React, {Fragment, useState, useEffect } from "react";
 import EditTodo from './EditTodo';
 
+import link from '../App';
+
 const ListTodo = () => {
 
     const [todos, setTodos] = useState([]);
@@ -9,7 +11,7 @@ const ListTodo = () => {
     const deleteTodo = async(id) => {
         try {
             
-            const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
+            const deleteTodo = await fetch(`${link}/todos/${id}`, {
                 method: "DELETE"
             });
 
@@ -23,7 +25,7 @@ const ListTodo = () => {
     const getTodos = async() => {
         try {
             
-            const response = await fetch("http://localhost:5000/todos");
+            const response = await fetch(`${link}/todos`);
 
             const jsonData = await response.json();
 

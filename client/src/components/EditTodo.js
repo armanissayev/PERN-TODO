@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import link from '../App';
 
 const EditTodo = ({ todo }) => {
     const [description, setDescription] = useState(todo.description);
@@ -8,7 +9,7 @@ const EditTodo = ({ todo }) => {
         try {
             
             const body = {description, priority};
-            const editTodo = await fetch(`http://localhost:5000/todos/${todo.todo_id}`, {
+            const editTodo = await fetch(`${link}/todos/${todo.todo_id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)

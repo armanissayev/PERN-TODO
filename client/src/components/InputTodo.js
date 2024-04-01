@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
 
+import link from '../App';
+
 const InputTodo = () => {
 
     const [description, setDescription] = useState("Input the description of your task");
@@ -9,7 +11,7 @@ const InputTodo = () => {
         e.preventDefault();
         try {
             const body = {description, priority};
-            const response = await fetch("http://localhost:5000/todos", {
+            const response = await fetch(`${link}/todos`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
