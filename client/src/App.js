@@ -14,7 +14,7 @@ if (res.charAt(last) === '/') {
     res = res.slice(0, -1);
 }
 
-const link = arr[0] + ":" + arr[1] + ":5000";
+const link = res + ":5000";
 
 function App() {
     console.log(link);
