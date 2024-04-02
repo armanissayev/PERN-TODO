@@ -7,6 +7,13 @@ import ListTodo from './components/ListTodo';
 
 const raw_link = window.location.href;
 var arr = raw_link.split(":");
+var res = arr[0] + ":" + arr[1];
+var last = res.length - 1;
+
+if (res.charAt(last) === '/') {
+    res = res.slice(0, -1);
+}
+
 const link = arr[0] + ":" + arr[1] + ":5000";
 
 function App() {
