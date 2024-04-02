@@ -14,7 +14,7 @@ if (res.charAt(last) === '/') {
     res = res.slice(0, -1);
 }
 
-const link = res + ":5000";
+const link = "https://pern-todo-0cb4.onrender.com:5000";
 
 function App() {
     console.log(link);
