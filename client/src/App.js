@@ -5,14 +5,17 @@ import './App.css';
 import InputTodo from './components/InputTodo';
 import ListTodo from './components/ListTodo';
 
-const link = window.location.href;
+const raw_link = window.location.href;
+var arr = raw_link.split(":");
+const link = arr[1] + ":5000";
 
 function App() {
+    console.log(link);
     return (
         <Fragment>
             <div className = "container">
-                <InputTodo />
-                <ListTodo />
+                <InputTodo link = {link}/>
+                <ListTodo link = {link} />
             </div>
         </Fragment>
     );

@@ -1,11 +1,10 @@
 import React, {Fragment, useState, useEffect } from "react";
 import EditTodo from './EditTodo';
 
-import link from '../App';
-
-const ListTodo = () => {
+const ListTodo = ({link}) => {
 
     const [todos, setTodos] = useState([]);
+
 
     // Delete todo
     const deleteTodo = async(id) => {
@@ -23,6 +22,7 @@ const ListTodo = () => {
 
     // Get all Todos
     const getTodos = async() => {
+        // console.log(link + "todos");
         try {
             
             const response = await fetch(`${link}/todos`);
@@ -58,7 +58,7 @@ const ListTodo = () => {
                             <td>{todo.description}</td>
                             <td>{todo.priority}</td>
                             <td>
-                                <EditTodo todo = {todo} />
+                                <EditTodo todo = {todo} link = {link} />
                             </td>
                             <td>
                                 <button className = "btn btn-danger" onClick={() => deleteTodo(todo.todo_id)} >Delete</button>

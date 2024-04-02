@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
-import link from '../App';
 
-const EditTodo = ({ todo }) => {
+const EditTodo = ({ todo, link }) => {
     const [description, setDescription] = useState(todo.description);
     const [priority, setPriority] = useState(todo.priority);
 

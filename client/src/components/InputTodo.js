@@ -1,8 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-import link from '../App';
-
-const InputTodo = () => {
+const InputTodo = ({link}) => {
 
     const [description, setDescription] = useState("Input the description of your task");
     const [priority, setPriority] = useState("High");
