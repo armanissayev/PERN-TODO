@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from "react";
+import StartSession from './StartSession';
+import JoinSession from './JoinSession';
 
-const InputTodo = ({link}) => {
+const InputTodo = ({setSessionId, sessionId, link}) => {
 
     const [description, setDescription] = useState("Input the description of your task");
     const [priority, setPriority] = useState("High");
@@ -28,6 +30,13 @@ const InputTodo = ({link}) => {
 
     return (
         <Fragment>
+            <div className = "header d-flex align-items-center flex-row-reverse gap-3 mt-1 sessionBtn">
+                <JoinSession setSessionId={setSessionId} />
+                <StartSession setSessionId={setSessionId} />
+                <div>
+                    Your session ID: <b>{sessionId}</b>
+                </div>
+            </div>
             <h1 className = "text-center mt-5">PERN TODO List</h1>
             <form className = "d-flex mt-5 gap-3" onSubmit={onSubmitForm}>
                 <input 

@@ -1,7 +1,7 @@
 import React, {Fragment, useState, useEffect } from "react";
 import EditTodo from './EditTodo';
 
-const ListTodo = ({link}) => {
+const ListTodo = ({sessionId, link}) => {
 
     const [todos, setTodos] = useState([]);
 
