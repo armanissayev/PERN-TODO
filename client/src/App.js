@@ -5,16 +5,7 @@ import './App.css';
 import InputTodo from './components/InputTodo';
 import ListTodo from './components/ListTodo';
 
-const raw_link = window.location.href;
-var arr = raw_link.split(":");
-var res = arr[0] + ":" + arr[1];
-var last = res.length - 1;
-
-if (res.charAt(last) === '/') {
-    res = res.slice(0, -1);
-}
-
-const link = "https://pern-todo-0cb4.onrender.com:5000";
+const link = "https://pern-todo-0cb4.onrender.com/";
 
 function App() {
     console.log(link);

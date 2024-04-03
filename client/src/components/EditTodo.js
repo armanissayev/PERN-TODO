@@ -8,7 +8,9 @@ const EditTodo = ({ todo, link }) => {
         try {
             
             const body = {description, priority};
-            const editTodo = await fetch(`${link}/todos/${todo.todo_id}`, {
+            const new_link = link + "todos/" + todo.todo_id;
+            console.log(new_link);
+            const editTodo = await fetch(`${new_link}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)

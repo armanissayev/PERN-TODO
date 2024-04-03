@@ -10,7 +10,7 @@ const InputTodo = ({link}) => {
         try {
             const body = {description, priority};
             console.log(body);
-            const new_link = link + "/todos";
+            const new_link = link + "todos";
             console.log(new_link);
             const response = await fetch(`${new_link}`, {
                 method: "POST",

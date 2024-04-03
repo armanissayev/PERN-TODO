@@ -10,7 +10,9 @@ const ListTodo = ({link}) => {
     const deleteTodo = async(id) => {
         try {
             
-            const deleteTodo = await fetch(`${link}/todos/${id}`, {
+            const new_link = link + "todos";
+            console.log(new_link);
+            const deleteTodo = await fetch(`${new_link}/${id}`, {
                 method: "DELETE"
             });
 
@@ -25,7 +27,9 @@ const ListTodo = ({link}) => {
         // console.log(link + "todos");
         try {
             
-            const response = await fetch(`${link}/todos`);
+            const new_link = link + "todos";
+            console.log(new_link);
+            const response = await fetch(`${new_link}`);
 
             const jsonData = await response.json();
 
