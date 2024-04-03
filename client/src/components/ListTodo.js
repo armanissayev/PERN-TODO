@@ -30,6 +30,7 @@ const ListTodo = ({link}) => {
             const jsonData = await response.json();
 
             setTodos(jsonData);
+            console.log(jsonData);
 
         } catch (err) {
             console.error(err.message);

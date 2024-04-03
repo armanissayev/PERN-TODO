@@ -9,12 +9,15 @@ const InputTodo = ({link}) => {
         e.preventDefault();
         try {
             const body = {description, priority};
-            const response = await fetch(`${link}/todos`, {
+            console.log(body);
+            const new_link = link + "/todos";
+            console.log(new_link);
+            const response = await fetch(`${new_link}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
-
+            
             console.log(response);
         } catch (err) {
             console.error(err.message);

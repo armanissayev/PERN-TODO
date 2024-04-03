@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
+const PORT = process.env.PORT || 5000
 
 // middleware
 app.use(cors());
@@ -53,7 +54,7 @@ app.get("/todos/:id", async(req, res) => {
     } catch (err) {
         console.error(err.message);
     }
-})
+});
 
 // update a todo
 
@@ -71,7 +72,7 @@ app.put("/todos/:id", async(req, res) => {
     } catch (err) {
         console.error(err.message);
     }
-})
+});
 
 // delete a todo
 
@@ -87,8 +88,8 @@ app.delete("/todos/:id", async(req, res) => {
     } catch (err) {
         console.error(err.message);
     }
-})
+});
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log("Server has started on port 5000!");
-})
+});
