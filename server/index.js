@@ -15,13 +15,32 @@ app.use(express.json()); //req.body
 app.post("/todos", async(req, res) => {
     try {
         
-        const {description, priority} = req.body;
+        const {session, description, priority, created_time, updated_time} = req.body;
         const newTodo = await pool.query(
-            "INSERT INTO todo (session_id, description, priority) VALUES($1, $2, $3) RETURNING *", 
-            [1, description, priority]
+            "INSERT INTO todo (session_id, description, priority, created_time, updated_time) VALUES($1, $2, $3, $4, $5) RETURNING *", 
+            [session, description, priority, created_time, updated_time]
         );
 
         res.json(newTodo.rows[0]);
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
+// create a session
+
+app.post("/session", async(req, res) => {
+    try {
+        
+        const {session, date} = req.body;
+        console.log(session);
+        const newSession = await pool.query(
+            "INSERT INTO sessions (session_id, created_time) VALUES($1, $2) RETURNING *",
+            [session, date]
+        );
+
+        res.json(newSession.rows[0]);
 
     } catch (err) {
         console.error(err.message);
@@ -41,20 +60,47 @@ app.get("/todos", async(req, res) => {
     }
 });
 
-// get a todo
+// get todos with specific session_id
 
-app.get("/todos/:id", async(req, res) => {
+app.get("/todos/:session_id", async(req, res) => {
     try {
-        const {id} = req.params;
-        const todo = await pool.query(
-            "SELECT * FROM todo WHERE todo_id = $1",
-            [id]
+        const {session_id} = req.params;
+        const todos = await pool.query(
+            "SELECT * FROM todo WHERE session_id = $1",
+            [session_id]
         );
-        res.json(todo.rows[0]);
+        // console.log("SELECT * FROM todo WHERE session_id = " + session_q);
+        // console.log(todos);
+        res.json(todos.rows);
     } catch (err) {
         console.error(err.message);
     }
 });
+
+// get a session
+
+app.get("/session/:session_name", async(req, res) => {
+    try {
+        
+        const {session_name} = req.params;
+        const session = await pool.query(
+            "SELECT * FROM sessions WHERE session_id = $1",
+            [session_name]
+        );
+
+        // console.log(session)
+
+        if (session.rows[0] == undefined) {
+            res.status(404).send('Not Found');
+        } else {
+            res.json(session.rows[0]);
+            // console.log(session.rows[0]);
+        }
+
+    } catch (err) {
+        console.error(err.message);
+    }
+})
 
 // update a todo
 

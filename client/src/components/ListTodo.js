@@ -1,10 +1,9 @@
 import React, {Fragment, useState, useEffect } from "react";
 import EditTodo from './EditTodo';
 
-const ListTodo = ({sessionId, link}) => {
+const ListTodo = ({setSessionId, sessionId, link}) => {
 
     const [todos, setTodos] = useState([]);
-
 
     // Delete todo
     const deleteTodo = async(id) => {
@@ -23,11 +22,12 @@ const ListTodo = ({sessionId, link}) => {
     };
 
     // Get all Todos
-    const getTodos = async() => {
+    const getTodos = async(session) => {
         // console.log(link + "todos");
+        if (session == "No session") return;
         try {
             
-            const new_link = link + "todos";
+            const new_link = link + "todos/" + session;
             console.log(new_link);
             const response = await fetch(`${new_link}`);
 
@@ -36,13 +36,16 @@ const ListTodo = ({sessionId, link}) => {
             setTodos(jsonData);
             console.log(jsonData);
 
+            // window.location = "/";
+
         } catch (err) {
             console.error(err.message);
         }
     };
 
     useEffect(() => {
-        getTodos();
+        let session = localStorage.getItem("session");
+        getTodos(session);
     }, []);
 
     return (

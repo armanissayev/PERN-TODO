@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import StartSession from './StartSession';
 import JoinSession from './JoinSession';
 
@@ -7,10 +7,17 @@ const InputTodo = ({setSessionId, sessionId, link}) => {
     const [description, setDescription] = useState("Input the description of your task");
     const [priority, setPriority] = useState("High");
 
+    let session = localStorage.getItem("session");
+    console.log(session);
+
     const onSubmitForm = async(e) => {
+        if (session == "No session") return;
         e.preventDefault();
+        // console.log()
         try {
-            const body = {description, priority};
+            let date = new Date();
+            let created_time = date, updated_time = date;
+            const body = {session, description, priority, created_time, updated_time};
             console.log(body);
             const new_link = link + "todos";
             console.log(new_link);
@@ -31,10 +38,10 @@ const InputTodo = ({setSessionId, sessionId, link}) => {
     return (
         <Fragment>
             <div className = "header d-flex align-items-center flex-row-reverse gap-3 mt-1 sessionBtn">
-                <JoinSession setSessionId={setSessionId} />
-                <StartSession setSessionId={setSessionId} />
+                <JoinSession setSessionId={setSessionId} link = {link} />
+                <StartSession setSessionId={setSessionId} link = {link} />
                 <div>
-                    Your session ID: <b>{sessionId}</b>
+                    Your session ID: <b>{session}</b>
                 </div>
             </div>
             <h1 className = "text-center mt-5">PERN TODO List</h1>
